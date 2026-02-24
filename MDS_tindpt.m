@@ -15,10 +15,17 @@
 %         Par = parameters
 %         FEH = Frenkel-exciton Hamiltonian; anything related to the Hamiltonian generation
 %         Res = Response; anything related to calculating the time-dependent system response function
+%
+%   Function files are organized into subdirectories:
+%         core/  - Hamiltonian generation and basis set functions
+%         utils/ - plotting and data processing utilities
+
+addpath('core');
+addpath('utils');
 
 close all;
 clear;
-clear var;
+clearvars;
 
 %Define constants and parameters
 
@@ -156,7 +163,7 @@ temp.R4 = zeros(size(temp.R1));
 
 for k = 1:length(Res.t2)
     temp.R1 = fft2(Res.R1_t1t3(:,:,k),Res.n3,Res.n1);   
-    temp.R1 = rot90(temp.R1,2);             %not particularly sure why I have to do this step, but it works
+    temp.R1 = rot90(temp.R1,2);             % rot90 by 180 degrees corrects the axis orientation after fft2, which places the DC component at (1,1); this reversal aligns the frequency axes with fftshift conventions
     Res.R1_w1w3(:,:,k) = -(fftshift(temp.R1));
 
     temp.R2 = fft2(Res.R2_t1t3(:,:,k),Res.n3,Res.n1); 
