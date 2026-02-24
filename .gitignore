@@ -1,0 +1,19 @@
+# MATLAB auto-save files
+*.asv
+
+# Compiled MEX binaries
+*.mex*
+*.mexw32
+*.mexw64
+*.mexmaci64
+*.mexa64
+
+# Saved figure files
+*.fig
+
+# Simulink build artifacts
+slprj/
+
+# MATLAB App Designer and Live Script artifacts
+*.mlapp
+*.mlx
